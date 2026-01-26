@@ -1,18 +1,16 @@
 import streamlit as st
 import psutil
 import time
-import pandas as pd 
+import pandas as pd
 from datetime import datetime
-import altair as alt 
+import altair as alt
 
 st.set_page_config(layout="wide")
 
 st.title("Linux System Dashboard")
 
 if "data" not in st.session_state:
-    st.session_state.data = pd.DataFrame(
-        columns=["Hora", "CPU", "RAM", "Disco"]
-    )
+    st.session_state.data = pd.DataFrame(columns=["Hora", "CPU", "RAM", "Disco"])
 
 cpu = psutil.cpu_percent()
 ram = psutil.virtual_memory().percent
@@ -62,5 +60,5 @@ col2.altair_chart(ram_chart, use_container_width=True)
 col3.altair_chart(disk_chart, use_container_width=True)
 
 
-time.sleep(2)   
+time.sleep(2)
 st.rerun()
